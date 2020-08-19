@@ -46,16 +46,56 @@
 	</span>
 </div>
 <span id="timecount"></span>
-
+	
 <script>
-	function isValidUrl(url){return/(http(s)?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6})?\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/g.test(url)}
-function getQueryVariable(variable){var query=window.location.search.substring(1);var vars=query.split("&");for(var i=0;i<vars.length;i++){var pair=vars[i].split("=");if(pair[0]==variable){let urlDecoded=decodeURIComponent(pair[1]);if(isValidUrl(urlDecoded))return urlDecoded}}
-return''}
-var time=1;var page=getQueryVariable("link");function countDown(){time--;gett("timecount").innerHTML=time;if(time==-1){window.location=page}}
-function gett(id){if(document.getElementById)return document.getElementById(id);if(document.all)return document.all.id;if(document.layers)return document.layers.id;if(window.opera)return window.opera.id}
-function init(){if(gett('timecount')){setInterval(countDown,1000);gett("timecount").innerHTML=time}else{setTimeout(init,50)}}
-document.onload=init();
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+var time = 1;
+var page = getQueryVariable("link");
+function countDown(){
+time--;
+gett("timecount").innerHTML = time;
+if(time == -1){
+window.location = page;
+}
+}
+function gett(id){
+if(document.getElementById) return document.getElementById(id);
+if(document.all) return document.all.id;
+if(document.layers) return document.layers.id;
+if(window.opera) return window.opera.id;
+}
+function init(){
+if(gett('timecount')){
+setInterval(countDown, 1000);
+gett("timecount").innerHTML = time;
+}
+else{
+setTimeout(init, 50);
+}
+}
+document.onload = init();
+$(document).ready(function(){
+ $('.link-out-btn').click(function(){
+    window.location = page;
+ });
+ $('#linkout').text(page);
+});
 </script>
+<script>
+function closeWindow() {
+        window.open('','_parent','');
+        window.close();
+    }
+</script> 
 
 </body>
 </html>
