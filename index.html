@@ -47,7 +47,7 @@
 </div>
 <span id="timecount"></span>
 	
-<script>function closeWindow(){window.open("","_parent",""),window.close()}function getQueryVariable(t){for(var n=window.location.search.substring(1).split("&"),e=0;e<n.length;e++){var i=n[e].split("=");if(i[0]==t)return i[1]}return!1}var time=1,page=getQueryVariable("link");function countDown(){time--,-1==(gett("timecount").innerHTML=time)&&(window.location=page)}function gett(t){return document.getElementById?document.getElementById(t):document.all?document.all.id:document.layers?document.layers.id:window.opera?window.opera.id:void 0}function init(){gett("timecount")?(setInterval(countDown,1e3),gett("timecount").innerHTML=time):setTimeout(init,50)}document.onload=init(),$(document).ready(function(){$(".link-out-btn").click(function(){window.location=page}),$("#linkout").text(page)});</script>
+<script>function isValidUrl(t){return/(http(s)?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6})?\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/g.test(t)}function getQueryVariable(t){for(var e=window.location.search.substring(1).split("&"),n=0;n<e.length;n++){var i=e[n].split("=");if(i[0]==t)return isValidUrl(i[1])?i[1]:atob(i[1])}return alert("Invalid url"),!1}var time=1,page=getQueryVariable("link");function countDown(){time--,gett("timecount").innerHTML=time,-1==time&&(window.location=page)}function gett(t){return document.getElementById?document.getElementById(t):document.all?document.all.id:document.layers?document.layers.id:window.opera?window.opera.id:void 0}function init(){gett("timecount")?(setInterval(countDown,1e3),gett("timecount").innerHTML=time):setTimeout(init,50)}document.onload=init();</script>
 
 </body>
 </html>
